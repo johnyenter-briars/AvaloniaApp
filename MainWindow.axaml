@@ -2,22 +2,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:controls="clr-namespace:MyApp"
         mc:Ignorable="d"
 		d:DesignWidth="600"
-		d:DesignHeight="550"
+		d:DesignHeight="650"
         x:Class="MyApp.MainWindow"
 		Width="600"
-		Height="500"
+		Height="650"
         Title="MyApp">
 
 
 	<Grid RowDefinitions="Auto, *, Auto">
 		<Grid.Styles>
+			<Style Selector="Button.small">
+				<Setter Property="FontSize" Value="12"/>
+				<Setter Property="Foreground" Value="White"></Setter>
+				<Setter Property="Background" Value="{DynamicResource BrightBlueBrush}"></Setter>
+				<Setter Property="CornerRadius" Value="20"></Setter>
+				<Setter Property="Padding" Value="7, 2"></Setter>
+			</Style>
 			<Style Selector="Button">
 				<Setter Property="Background" Value="Transparent"></Setter>
 			</Style>
 			<Style Selector="Button:pointerover /template/ ContentPresenter">
-				<Setter Property="Background" Value="Transparent"></Setter>
+				<Setter Property="Background" Value="{DynamicResource BrightBlueBrush}"></Setter>
 				<Setter Property="RenderTransform" Value="scale(1.11)"></Setter>
 				<Setter Property="Opacity" Value="0.6"></Setter>
 			</Style>
@@ -35,7 +43,7 @@
 		</Grid.Styles>
 		<Grid
 			Grid.Row="0"
-			Background="#e5e5e5"
+			Background="{DynamicResource MediumGreyBrush}"
 			Height="40"
 			ColumnDefinitions="Auto, Auto, *, Auto, Auto"
 			>
@@ -85,7 +93,7 @@
 		<Grid
 			ColumnDefinitions="Auto, Auto, *"
 			Grid.Row="1"
-			Background="#333">
+			Background="{DynamicResource DarkBlueBrush}">
 
 			<!-- Volume Bar -->
 			<Grid Grid.Column="0" Width="150"
@@ -166,20 +174,36 @@
 				<!--Volume Bar Buttons-->
 				<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
 					<StackPanel.Styles>
-						<Style Selector="Button">
+						<Style Selector="Button.small">
 							<Setter Property="FontSize" Value="12"/>
 							<Setter Property="Foreground" Value="White"/>
-							<Setter Property="Background" Value="#7f98c7"/>
+							<Setter Property="Background" Value="{DynamicResource BrightBlueBrush}"/>
 							<Setter Property="CornerRadius" Value="20"/>
 							<Setter Property="Padding" Value="8, 2" />
 						</Style>
 					</StackPanel.Styles>
-					<Button Margin="0,0,20,0">A</Button>
-					<Button>INT-LRA</Button>
+					<Button Classes="small" Margin="0,0,20,0">A</Button>
+					<Button Classes="small">INT-LRA</Button>
 				</StackPanel>
 			</Grid>
 			<!-- Details -->
-			<Rectangle Grid.Column="1" Fill="White" Width="140" />
+			<StackPanel Grid.Column="1" Width="170" Margin="0, 15, 10, 15">
+				<controls:LargeLabelControl LargeText="dgsd" SmallText="SHORT TERM" />
+                <controls:LargeLabelControl LargeText="fooo" SmallText="INTEGRATED" Background="{DynamicResource LightBlueBrush}" />
+                <controls:LargeLabelControl LargeText="bar" SmallText="LOUDNESS RANGE" />
+                <controls:LargeLabelControl LargeText="baz" SmallText="REALTIME DYNAMICS" />
+                <controls:LargeLabelControl LargeText="gsdg" SmallText="AVG. DYNAMIC (PLR)" Margin="0, 0, 0, 13" />
+                
+                <controls:LargeLabelControl LargeText="dsf" SmallText="MOMENTARY MAX" Classes="button" />
+                <controls:LargeLabelControl LargeText="d" SmallText="SHORT TERM MAX" Classes="button" />
+                <controls:LargeLabelControl LargeText="gsds" SmallText="TRUE PEAK MAX" Classes="button" Margin="0,0,0, 10" />
+
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Classes="small" Margin="0,0,20,0">AUTO</Button>
+                    <Button Classes="small" FontSize="20" FontFamily="Arial" Background="{DynamicResource FaddedRedBrush}">X</Button>
+                </StackPanel>
+			</StackPanel>
+
 			<!-- Graph -->
 			<Rectangle Grid.Column="2" Fill="Black" />
 
